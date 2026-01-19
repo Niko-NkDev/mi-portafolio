@@ -1,7 +1,7 @@
 export default function Footer() {
 	return (
 		<footer>
-			<p>Todos los Derechos Reservados. Nicolas Cortes - 2024</p>
+			<p> Todos los Derechos Reservados. Nicolas Cortes - 2024 <i className="fa-brands fa-angellist"></i> </p>
 			<div className="redes">
 				<a href="https://github.com/Niko-NkDev" target="_blank" rel="noreferrer">
 					<i className="fa-brands fa-github"></i>

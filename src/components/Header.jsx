@@ -17,7 +17,7 @@ export default function Header() {
           <img src={logo} width="45" className="logonk" />
         </a>
 
-        <nav id="nav" className={menuOpen ? 'open' : ''}>
+        <nav id="nav" className={menuOpen ? 'responsive' : ''}>
           <ul id="links">
             <li>
               <a
