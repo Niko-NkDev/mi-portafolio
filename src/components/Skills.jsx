@@ -1,7 +1,7 @@
 export default function Skills() {
   return (
     <div className="skills">
-      <h3>HABILIDADES</h3>
+      <h3 style={{color: '#fff'}}>HABILIDADES</h3>
       <div className="skill">
         <div className="info">
           <p>
@@ -43,7 +43,7 @@ export default function Skills() {
           <p>
             <span className="lista"></span>JAVA
           </p>
-          <span className="porcentaje">80%</span>
+          <span className="porcentaje">30%</span>
         </div>
         <div className="barra">
           <div id="ps" className="barra-progreso4"></div>
