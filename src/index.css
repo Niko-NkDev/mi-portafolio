@@ -89,6 +89,7 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 #inicio .contenido .presentacion .bienvenida {
@@ -138,6 +139,41 @@ html {
   display: none;
 }
 
+.presentacion {
+  position: relative;
+  z-index: 2;
+}
+
+.hero {
+	position: relative;
+	overflow: hidden;
+}
+
+.presentacion {
+	position: relative;
+	z-index: 2;
+}
+
+.hero-3d-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px; 
+}
+
+.presentacion {
+  position: relative;
+  z-index: 2;
+}
 
 /* SECCION SOBRE MI */
 
@@ -649,3 +685,6 @@ footer a {
   }
 
 }
+
+
+
