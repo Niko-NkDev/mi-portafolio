@@ -1,4 +1,3 @@
-import './App.css'
 import './styles/global.css'
 import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
@@ -8,11 +7,14 @@ import Skills from './components/Skills.jsx'
 import Projects from './components/Projects.jsx'
 import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
+import CustomCursor from "./components/CustomCursor.jsx";
+
 
 function App() {
   return (
     <>
       <section id="inicio">
+        <CustomCursor />
         <div className="contenido">
           <Header />
           <Hero />
