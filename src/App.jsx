@@ -39,9 +39,8 @@ function App() {
 
       <section id="contacto">
         <Contact />
+        <Footer />
       </section>
-
-      <Footer />
     </>
   )
 }

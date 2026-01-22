@@ -1,53 +1,70 @@
 export default function Skills() {
+  const skillsData = [
+    {
+      category: "Frontend",
+      skills: [
+        { name: "HTML / CSS", percentage: 85 },
+        { name: "JavaScript", percentage: 70 },
+        { name: "Typescript", percentage: 55 },
+        { name: "React", percentage: 70 },
+        { name: "Angular", percentage: 60 },
+        { name: "Bootstrap", percentage: 75 }
+      ]
+    },
+    {
+      category: "Backend",
+      skills: [
+        { name: "Java (Spring Boot)", percentage: 40 },
+        { name: "C# (ASP.NET Core)", percentage: 50 },
+        { name: "Node.js", percentage: 65 },
+        { name: "APIs REST", percentage: 60 }
+      ]
+    },
+    {
+      category: "Bases de Datos",
+      skills: [
+        { name: "MySQL", percentage: 65 },
+        { name: "MongoDB", percentage: 60 },
+        { name: "SQLServer", percentage: 50 }
+      ]
+    },
+    {
+      category: "Herramientas",
+      skills: [
+        { name: "Git / GitHub", percentage: 70 },
+        { name: "Postman", percentage: 65 },
+        { name: "Azure DevOps", percentage: 50 },
+        { name: "Docker", percentage: 45}
+
+      ]
+    }
+  ];
+
   return (
-    <div className="skills">
-      <h3 style={{color: '#fff'}}>HABILIDADES</h3>
-      <div className="skill">
-        <div className="info">
-          <p>
-            <span className="lista"></span>HTML &amp; CSS
-          </p>
-          <span className="porcentaje">85%</span>
-        </div>
-        <div className="barra">
-          <div id="html" className="barra-progreso1"></div>
-        </div>
-      </div>
-
-      <div className="skill">
-        <div className="info">
-          <p>
-            <span className="lista"></span>Javascript
-          </p>
-          <span className="porcentaje">70%</span>
-        </div>
-        <div className="barra">
-          <div id="js" className="barra-progreso2"></div>
-        </div>
-      </div>
-
-      <div className="skill">
-        <div className="info">
-          <p>
-            <span className="lista"></span>Base de Datos
-          </p>
-          <span className="porcentaje">65%</span>
-        </div>
-        <div className="barra">
-          <div id="bd" className="barra-progreso3"></div>
-        </div>
-      </div>
-
-      <div className="skill">
-        <div className="info">
-          <p>
-            <span className="lista"></span>JAVA
-          </p>
-          <span className="porcentaje">30%</span>
-        </div>
-        <div className="barra">
-          <div id="ps" className="barra-progreso4"></div>
-        </div>
+    <div className="skills-container">
+      <h2 className="skills-title">Mis Habilidades</h2>
+      <div className="skills-grid">
+        {skillsData.map((category, categoryIndex) => (
+          <div key={categoryIndex} className="skill-category">
+            <h3 className="category-title">{category.category}</h3>
+            <div className="skills-list">
+              {category.skills.map((skill, skillIndex) => (
+                <div key={skillIndex} className="skill-item">
+                  <div className="skill-header">
+                    <span className="skill-name">{skill.name}</span>
+                    <span className="skill-percentage">{skill.percentage}%</span>
+                  </div>
+                  <div className="skill-bar">
+                    <div 
+                      className="skill-progress" 
+                      style={{ width: `${skill.percentage}%` }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )

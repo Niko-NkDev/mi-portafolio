@@ -10,9 +10,8 @@ export default function Sphere() {
 
     // Intensidad según mouse
     const intensity = Math.abs(mouse.x) + Math.abs(mouse.y);
-
-    material.current.distort = 0.2 + intensity * 0.3;
-    material.current.speed = 1.5 + intensity * 3;
+    material.current.distort = 0.4 + intensity * 0.1;
+    material.current.speed = 1.5 + intensity * 1;
   });
 
   return (
