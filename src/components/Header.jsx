@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logo from '../assets/images/logo1.jpg'
+import logoHeader from '../assets/images/logoHeader.png'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -14,7 +14,7 @@ export default function Header() {
     <header>
       <div className="contenido-header">
         <a href="#inicio" onClick={() => handleSelect('inicio')}>
-          <img src={logo} width="45" className="logonk" />
+          <img src={logoHeader} width="45" className="logonk" />
         </a>
 
         <nav id="nav" className={menuOpen ? 'responsive' : ''}>
@@ -74,6 +74,9 @@ export default function Header() {
         <div className="redes">
           <a href="https://github.com/Niko-NkDev" target="_blank" rel="noreferrer">
             <i className="fa-brands fa-github"></i>
+          </a>
+          <a href="https://wa.me/3147258925" target="_blank" rel="noreferrer">
+            <i className="fa-brands fa-whatsapp"></i>
           </a>
           <a href="https://www.facebook.com/nicolas.cortesgarcia.1/" target="_blank" rel="noreferrer">
             <i className="fa-brands fa-facebook"></i>

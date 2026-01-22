@@ -1,82 +1,122 @@
-import p1 from '../assets/images/proyecto1.png'
-import p2 from '../assets/images/proyecto2.jpg'
+import p1 from '../assets/images/appClima.png'
+import p2 from '../assets/images/calculadoraApp.png'
 import p3 from '../assets/images/proyecto3.png'
 import p4 from '../assets/images/proyecto4.jpg'
-import p5 from '../assets/images/proyecto5.png'
+import p5 from '../assets/images/imcApp.png'
 import p6 from '../assets/images/proyecto6.jpg'
+import { useState, useEffect } from 'react'
 
 export default function Projects() {
-	return (
-		<div className="projects">
-			<h3 className="titulo-seccion">MIS PROYECTOS</h3>
-			<div className="fila">
-				<div className="proyecto">
-					<div className="overlay"></div>
-					<a
-						href="https://drive.google.com/drive/folders/1xh_XriS2sJTD4MCNUvqrhKTIJr7J80zq?usp=sharing"
-						target="_blank"
-						rel="noreferrer"
-					>
-						<img src={p1} alt="Proyecto SENA" />
-					</a>
-					<div className="info">
-						<h4>Trabajos SENA Ficha 2627085</h4>
-						<p>Proyecto</p>
-					</div>
-				</div>
-				<div className="proyecto">
-					<div className="overlay"></div>
-					<a href="https://github.com/Niko-NkDev/my-school-app-react" target="_blank" rel="noreferrer">
-						<img src={p2} alt="My School App" />
-					</a>
-					<div className="info">
-						<h4>Proyecto My School APP</h4>
-						<p>Aplicación web desarrollada con React</p>
-					</div>
-				</div>
-				<div className="proyecto">
-					<div className="overlay"></div>
-					<a href="https://github.com/Niko-NkDev/login-php-api" target="_blank" rel="noreferrer">
-						<img src={p3} alt="Login PHP" />
-					</a>
-					<div className="info">
-						<h4>Aplicacion con PHP</h4>
-						<p>Login y registro de aplicación web con PHP</p>
-					</div>
-				</div>
-			</div>
-			<div className="fila">
-				<div className="proyecto">
-					<div className="overlay"></div>
-					<a href="https://github.com/Niko-NkDev/project-java-springboot" target="_blank" rel="noreferrer">
-						<img src={p4} alt="Spring Boot" />
-					</a>
-					<div className="info">
-						<h4>Proyecto JAVA con SpringBoot</h4>
-						<p>ApiRest de CRUD utilizando SpringBoot y MySQL</p>
-					</div>
-				</div>
-				<div className="proyecto">
-					<div className="overlay"></div>
-					<a href="https://github.com/Niko-NkDev/webapp-java" target="_blank" rel="noreferrer">
-						<img src={p5} alt="JAVA Servlets" />
-					</a>
-					<div className="info">
-						<h4>JAVA Servlets</h4>
-						<p>Desarrollo de pagina web con Servlets</p>
-					</div>
-				</div>
-				<div className="proyecto">
-					<div className="overlay"></div>
-					<a href="https://github.com/Niko-NkDev/java_prueba_jdbc_mysql" target="_blank" rel="noreferrer">
-						<img src={p6} alt="JAVA JDBC MySQL" />
-					</a>
-					<div className="info">
-						<h4>JAVA JDBC MySQL</h4>
-						<p>Desarrollo con JAVA JDBC</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const projects = [
+    {
+      id: 1,
+      title: "App Clima",
+      // description: "Proyecto",
+      image: p1,
+      link: "https://weather-app-eight-omega-59.vercel.app/"
+    },
+    {
+      id: 2,
+      title: "App Calculadora",
+      image: p2,
+      link: "https://github.com/Niko-NkDev/my-school-app-react"
+    },
+    {
+      id: 3,
+      title: "Aplicacion con PHP",
+      image: p3,
+      link: "https://github.com/Niko-NkDev/login-php-api"
+    },
+    {
+      id: 4,
+      title: "Proyecto JAVA con SpringBoot",
+      image: p4,
+      link: "https://github.com/Niko-NkDev/project-java-springboot"
+    },
+    {
+      id: 5,
+      title: "App IMC",
+      image: p5,
+      link: "https://github.com/Niko-NkDev/webapp-java"
+    },
+    {
+      id: 6,
+      title: "JAVA JDBC MySQL",
+      image: p6,
+      link: "https://github.com/Niko-NkDev/java_prueba_jdbc_mysql"
+    }
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % projects.length)
+    }, 4500)
+
+    return () => clearInterval(interval)
+  }, [projects.length])
+
+  const handleNext = () => {
+    setActiveIndex(prev => (prev + 1) % projects.length)
+  }
+
+  const handlePrev = () => {
+    setActiveIndex(prev => (prev - 1 + projects.length) % projects.length)
+  }
+
+  const getPosition = (index) => {
+    if (index === activeIndex) return 'active'
+    if (index === (activeIndex - 1 + projects.length) % projects.length) return 'prev'
+    if (index === (activeIndex + 1) % projects.length) return 'next'
+    return 'hidden'
+  }
+
+  return (
+    <div className="projects-container">
+      <h2 className="projects-title">MIS PROYECTOS</h2>
+
+      <div className="carousel-wrapper">
+        <div className="carousel-container">
+          <div className="carousel-content">
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                className={`carousel-slide ${getPosition(index)}`}
+              >
+                <div className="project-card">
+                  <div className="project-image-wrapper">
+                    <a href={project.link} target="_blank" rel="noreferrer">
+                      <img src={project.image} alt={project.title} />
+                      <div className="overlay-info">
+                        <span className="view-btn">Ver Proyecto</span>
+                      </div>
+                    </a>
+                  </div>
+                  <div className="project-info">
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button
+            className="carousel-btn prev-btn"
+            onClick={handlePrev}
+            aria-label="Proyecto anterior"
+          >
+            <i className="fa-solid fa-arrow-left"></i>
+          </button>
+          <button
+            className="carousel-btn next-btn"
+            onClick={handleNext}
+            aria-label="Siguiente proyecto"
+          >
+            <i className="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  )
 }
