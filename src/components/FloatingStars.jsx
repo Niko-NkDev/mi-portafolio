@@ -1,7 +1,7 @@
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 
-export default function FloatingStars({ count = 250 }) {
+export default function FloatingStars({ count = 250, isActive = true }) {
   const points = useRef();
 
   const stars = useMemo(() => {
@@ -22,6 +22,7 @@ export default function FloatingStars({ count = 250 }) {
   );
 
   useFrame((state, delta) => {
+    if (!isActive) return;
     const time = state.clock.elapsedTime;
     const pos = points.current.geometry.attributes.position;
 

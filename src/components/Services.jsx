@@ -1,6 +1,9 @@
+import SectionStars from "./SectionStars.jsx";
+
 export default function Services() {
   return (
-    <div className="services">
+    <div className="services" id="servicios">
+      <SectionStars containerSelector="#servicios" className="projects-canvas" count={320} />
       <h3 className="titulo-seccion">MIS SERVICIOS</h3>
       <div className="fila">
         <div className="servicio">
