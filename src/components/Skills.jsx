@@ -1,4 +1,10 @@
+import { useEffect, useRef, useState } from 'react'
+import SectionStars from './SectionStars.jsx'
+
 export default function Skills() {
+  const [animated, setAnimated] = useState(false)
+  const sectionRef = useRef(null)
+
   const skillsData = [
     {
       category: "Frontend",
@@ -34,38 +40,74 @@ export default function Skills() {
         { name: "Git / GitHub", percentage: 70 },
         { name: "Postman", percentage: 65 },
         { name: "Azure DevOps", percentage: 50 },
-        { name: "Docker", percentage: 45}
-
+        { name: "Docker", percentage: 45 }
       ]
     }
-  ];
+  ]
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimated(true)
+          observer.disconnect() 
+        }
+      },
+      {
+        threshold: 0.3 
+      }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <div className="skills-container">
-      <h2 className="skills-title">Mis Habilidades</h2>
-      <div className="skills-grid">
-        {skillsData.map((category, categoryIndex) => (
-          <div key={categoryIndex} className="skill-category">
-            <h3 className="category-title">{category.category}</h3>
-            <div className="skills-list">
-              {category.skills.map((skill, skillIndex) => (
-                <div key={skillIndex} className="skill-item">
-                  <div className="skill-header">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.percentage}%</span>
+    <>
+      <SectionStars
+        containerSelector="#skills"
+        className="projects-canvas"
+        count={350}
+      />
+
+      <section
+        ref={sectionRef}
+        id="skills"
+        className={`skills-container ${animated ? 'animate-bars' : ''}`}
+      >
+        <h2 className="skills-title">Mis Habilidades</h2>
+
+        <div className="skills-grid">
+          {skillsData.map((category, categoryIndex) => (
+            <div key={categoryIndex} className="skill-category">
+              <h3 className="category-title">{category.category}</h3>
+
+              <div className="skills-list">
+                {category.skills.map((skill, skillIndex) => (
+                  <div key={skillIndex} className="skill-item">
+                    <div className="skill-header">
+                      <span className="skill-name">{skill.name}</span>
+                      <span className="skill-percentage">
+                        {skill.percentage}%
+                      </span>
+                    </div>
+
+                    <div className="skill-bar">
+                      <div
+                        className="skill-progress"
+                        style={{ '--target': `${skill.percentage}%` }}
+                      />
+                    </div>
                   </div>
-                  <div className="skill-bar">
-                    <div 
-                      className="skill-progress" 
-                      style={{ width: `${skill.percentage}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))}
+        </div>
+      </section>
+    </>
   )
 }

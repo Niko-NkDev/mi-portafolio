@@ -1,10 +1,12 @@
-import p1 from '../assets/images/appClima.png'
-import p2 from '../assets/images/calculadoraApp.png'
-import p3 from '../assets/images/proyecto3.png'
-import p4 from '../assets/images/proyecto4.jpg'
-import p5 from '../assets/images/imcApp.png'
-import p6 from '../assets/images/proyecto6.jpg'
+import p1 from '../assets/images/appClima.webp'
+import p2 from '../assets/images/calculadoraApp.webp'
+import p3 from '../assets/images/proyecto3.webp'
+import p4 from '../assets/images/proyecto4.webp'
+import p5 from '../assets/images/imcApp.webp'
+import p6 from '../assets/images/proyecto6.webp'
+import p7 from '../assets/images/proyecto7.webp'
 import { useState, useEffect } from 'react'
+import SectionStars from './SectionStars.jsx'
 
 export default function Projects() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -13,7 +15,6 @@ export default function Projects() {
     {
       id: 1,
       title: "App Clima",
-      // description: "Proyecto",
       image: p1,
       link: "https://weather-app-eight-omega-59.vercel.app/"
     },
@@ -46,6 +47,12 @@ export default function Projects() {
       title: "JAVA JDBC MySQL",
       image: p6,
       link: "https://github.com/Niko-NkDev/java_prueba_jdbc_mysql"
+    },
+    {
+      id: 7,
+      title: "React JS",
+      image: p7,
+      link: "https://www.cumbrecafe.shop/"
     }
   ]
 
@@ -53,7 +60,6 @@ export default function Projects() {
     const interval = setInterval(() => {
       setActiveIndex(prev => (prev + 1) % projects.length)
     }, 4500)
-
     return () => clearInterval(interval)
   }, [projects.length])
 
@@ -73,12 +79,14 @@ export default function Projects() {
   }
 
   return (
+    <>
     <div className="projects-container">
+      <SectionStars containerSelector="#portafolio" className="projects-canvas" count={500} />
       <h2 className="projects-title">MIS PROYECTOS</h2>
 
       <div className="carousel-wrapper">
         <div className="carousel-container">
-          <div className="carousel-content">
+          <div className="carousel-content" aria-live="polite">
             {projects.map((project, index) => (
               <div
                 key={project.id}
@@ -86,8 +94,8 @@ export default function Projects() {
               >
                 <div className="project-card">
                   <div className="project-image-wrapper">
-                    <a href={project.link} target="_blank" rel="noreferrer">
-                      <img src={project.image} alt={project.title} />
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={`Ver ${project.title}`}>
+                      <img src={project.image} alt={project.title} loading="lazy" decoding="async" />
                       <div className="overlay-info">
                         <span className="view-btn">Ver Proyecto</span>
                       </div>
@@ -118,5 +126,6 @@ export default function Projects() {
         </div>
       </div>
     </div>
+    </>
   )
 }

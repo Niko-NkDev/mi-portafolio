@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { MeshDistortMaterial, Float } from "@react-three/drei";
 
-export default function Sphere() {
+export default function Sphere({ scale = 1 }) {
   const material = useRef();
 
   useFrame(({ mouse }) => {
@@ -16,8 +16,8 @@ export default function Sphere() {
 
   return (
     <Float speed={1.2} floatIntensity={0.5} rotationIntensity={0.4}>
-      <mesh>
-        <sphereGeometry args={[1.8, 128, 128]} />
+      <mesh scale={scale}>
+        <sphereGeometry args={[1.8, 48, 48]} />
         <MeshDistortMaterial
           ref={material}
           color="#6c63ff"
