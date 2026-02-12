@@ -22,7 +22,7 @@ export default function Projects() {
       id: 2,
       title: "App Calculadora",
       image: p2,
-      link: "https://github.com/Niko-NkDev/my-school-app-react"
+      link: "https://calculadora-reactjs-ten.vercel.app/"
     },
     {
       id: 3,
@@ -40,7 +40,7 @@ export default function Projects() {
       id: 5,
       title: "App IMC",
       image: p5,
-      link: "https://github.com/Niko-NkDev/webapp-java"
+      link: "https://imc-app-xi.vercel.app/"
     },
     {
       id: 6,
